@@ -73,4 +73,70 @@
 
     echo "<br>";
     echo $contacto;
+
+    //Variables globales
+
+    //Conclusión: no se puede acceder a una variable desde un ámbito distinto, a menos que usemos las variables globales.
+    
+    global $mensaje;
+    $mensaje = "Hola Mundo";
+
+    function emitirMensaje(){
+        global $mensaje;
+        echo "Desde la función: " . $mensaje;
+    }
+
+    echo "<hr>";
+    emitirMensaje();
+    echo "<br>";
+    echo $mensaje;
+
+    //Variables estáticas
+    //Mantiene el valor de una variable para manipularla llamada tras llamada
+    function contador(){
+        static $num = 1;
+        echo $num;
+        $num = $num + 1;
+    }
+
+    echo "<hr>";
+    contador();
+    echo "<br>";
+    contador();
+    echo "<br>";
+    contador();
+    echo "<br>";
+    contador();
+    echo "<br>";
+    contador();
+    echo "<br>";
+    contador();
+
+    //Variables super globales
+    //Disponibles en todos los ámbitos
+    $minombre;
+    $minombre = "Juan Aldair Ruiz Carmona";
+    echo "<br />";
+    echo $GLOBALS['minombre'] . "<br />";
+
+    //Variables super globales predefinidas
+    echo "<hr />";
+    echo "Nombre archivo: " . $_SERVER['PHP_SELF'];
+
+    echo "<hr />";
+    //Variables de variable
+    $persona = "Juan Pablo Pino";
+    $hombre = "persona";
+
+    echo $hombre;
+    echo "<br>";
+    echo $persona;
+    echo "<br>";
+    echo $$hombre;
+
+    //Variables o métodos para variables predefinitas
+    echo "<hr />";
+    $division = 4/0;
+    $err = error_get_last();
+    var_export($err);
 ?>
